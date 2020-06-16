@@ -1,0 +1,18 @@
+运行shell 脚本的方式
+  ./filename.sh
+  这两种方式 不用再文件内容当中第一行 执行解释器
+    bash filename.sh
+    /bin/bash filename.sh
+  不考虑权限问题，强制执行 文件可以加./ 也可以不加
+  source filename.sh
+  使用 . 文件可以加./ 也可以不加
+  . filename.sh
+  
+  echo $$ 输出当前进程的PID
+案例：
+
+#!/bin/bash
+# Copyright (c) http://c.biancheng.net/shell/
+echo "What is the url of the shell tutorial?"
+read URL
+echo "$URL is very fast!"
