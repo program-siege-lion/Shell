@@ -1,0 +1,40 @@
+给脚本文件传递位置参数
+#!/bin/bash
+echo line $1
+echo line $1
+
+. ./filename.sh num sunshaolei
+
+给函数传递位置参数
+function func(){
+  echo "line $1"
+  echo "line $2"
+}
+func sun shaolei
+
+Shell特殊变量 $n $# $@ $? $$ $*..
+  $0	当前脚本的文件名。
+  $n（n≥1）	传递给脚本或函数的参数。n 是一个数字，表示第几个参数。例如，第一个参数是 $1，第二个参数是 $2。
+  $#	传递给脚本或函数的参数个数。
+  $*	传递给脚本或函数的所有参数。
+  $@	传递给脚本或函数的所有参数。当被双引号" "包含时，$@ 与 $* 稍有不同。
+  $?	上个命令的退出状态，或函数的返回值。
+  $$	当前 Shell 进程 ID。对于 Shell 脚本，就是这些脚本所在的进程 ID。
+  
+$? 获取函数的返回值， 获取上一个命令的退出状态
+    #!/bin/bash
+    if [ "$1" == 100 ]
+    then
+       exit 0  #参数正确，退出状态为0
+    else
+       exit 1  #参数错误，退出状态1
+    fi
+    
+    
+    #!/bin/bash
+    #得到两个数相加的和
+    function add(){
+        return `expr $1 + $2` # 
+    }
+    add 23 50  #调用函数
+    echo $?  #获取函数返回值
