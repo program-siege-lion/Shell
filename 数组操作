@@ -1,0 +1,25 @@
+Shell 数据定义
+  空格分隔
+    array=(value1 value2 value3)
+  获取数组元素
+    $(array[index])
+  获取所有元素，有两种方式 分别是以下：
+    ${array[@])
+    ${array[*])
+    
+Shell 获取数组长度
+    ${#array[@]}
+    ${#array[*]}
+  获取数据下面某个字符串的长度,这两个操作是相同，一样的。
+    $(#array[1])
+    $(#string)
+
+数组拼接（数组合并）
+  array1=(23 56)
+  array2=(99 "http://c.biancheng.net/shell/")
+  array_new=(${array1[@]} ${array2[*]})
+  echo ${array_new[@]}  #也可以写作 ${array_new[*]}
+  结果：23 56 99 http://c.biancheng.net/shell/
+删除数组
+  unset array[index] 针对单个下标删除
+  unset array 删除整个数组
