@@ -1,0 +1,96 @@
+while 当条件成立的时候走循环
+  Ctrl + d 组合结束读取，然后进行计算
+  简单示例：
+      #!/bin/bash
+      while (( 1 -eq 1))
+      do 
+        echo "循环成立 走循环体"
+      done
+      
+
+until 用法跟while 相似，但是不同点在于 while 是条件成立的时候去走循环体，而until是条件不成立的时候去走循环体，两个解释一下案例：
+  
+  案例一：
+      #!/bin/bash
+      until ((1 -ne 2))
+      do
+        echo "循环体"
+      done
+      echo "循环结束"
+  
+  案例二：
+      #!/bin/bash
+      i=1
+      sum=0
+      until ((i>100))
+      do
+          ((sum+=i))
+          ((i++))
+      done
+      
+      echo "$sum"
+  
+for循环:
+  for 循环有三个表达式，其中exp2是条件判断，for循环根据exp2的结果决定是否循环。
+    exp1 初始化
+    exp2 条件判断
+    exp 自增或者自减
+    
+    演示几个简单示例：
+      案例一：
+        for ((i=0; i<100;i++))
+        do
+          echo "走循环体"
+        done
+      
+      案例二：
+        缺少循环条件的，如果不做任何处理就会成为死循环，但是我们在循环体内通过使用break关键字来终止循环,
+        for ((i=1; ; i++;))
+        do
+          if((i>100))
+          then
+            echo "ko"
+            break
+          else
+            i++
+            echo $i            
+          fi
+        done
+        缺少第三个参数跟这个类似
+  
+  python 风格的for in 循环
+    list={1..100}
+    list=("value1" "value2" "value3" )
+    for index in list
+    do
+      echo index
+    done
+    
+    列出当前目录下所有的shell文件 或者将 $(ls *.sh) 改为 *.sh 。
+      #!/bin/bash
+      for filename in $(ls *.sh)
+      do
+          echo $filename
+      done
+      
+    还可以使用特殊变量， 省略等等
+    使用特殊变量：
+        #!/bin/bash
+        function func(){
+            for str in $@
+            do
+                echo $str
+            done
+        }
+        func C++ Java Python C#
+
+      省略循环体
+        #!/bin/bash
+        function func(){
+            for str
+            do
+                echo $str
+            done
+        }
+      func C++ Java Python C#
+    
