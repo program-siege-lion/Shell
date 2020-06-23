@@ -1,0 +1,15 @@
+后台运行 
+shell> nohup bash /path/bash.sh &
+
+bash.sh文件内容 
+  #!/bin/bash
+  nginx_process_num=$(ps -ef | grep nginx)
+  while :
+  do
+      if [ "$nginx_process_num" != 0 ];
+      then
+          mingling=$(/usr/local/nginx/sbin/nginx)
+          # >> demo.txt # 将输入结果一追加的方式重定向到文件当中
+          echo $mingling
+      fi
+  done
